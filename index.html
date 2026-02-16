@@ -9,270 +9,200 @@
         :root {
             --bg-color: #0f172a;
             --surface-color: #1e293b;
+            --surface-light: #334155;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent-color: #06b6d4; /* シアン */
-            --accent-hover: #0891b2;
+            --accent-color: #06b6d4;
             --border-color: #334155;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', 'Noto Sans JP', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
 
-        body {
-            font-family: 'Roboto', 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+        /* --- ヘッダー（名前・概要） --- */
+        header { padding: 4rem 2rem; background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid var(--border-color); }
+        .header-content { max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); border-left: 5px solid var(--accent-color); padding-left: 1rem;}
+        .subtitle { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 2rem; padding-left: 1rem;}
+        
+        .summary-list { list-style: none; color: var(--text-muted); padding-left: 1rem; }
+        .summary-list li { margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; }
+        .summary-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold;}
 
-        header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
-            border-bottom: 1px solid var(--border-color);
-        }
+        /* --- メインコンテンツ --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+        .section-title { font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        .card { background-color: var(--surface-color); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border-color); margin-bottom: 1.5rem; }
+        .card h3 { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1rem; }
 
-        h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #06b6d4, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* --- プログレスバー（目標） --- */
+        .goal-group { display: flex; flex-direction: column; gap: 1.5rem; }
+        .goal-item { background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 6px; border: 1px dashed var(--border-color); }
+        .goal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.5rem; }
+        .goal-title { font-weight: 700; }
+        .goal-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .goal-percent { font-weight: 700; color: var(--accent-color); }
+        .progress-track { width: 100%; height: 8px; background-color: var(--surface-light); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent-color); border-radius: 4px; }
 
-        .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: var(--accent-color);
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .card {
-            background-color: var(--surface-color);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-color);
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        ul li {
-            margin-bottom: 0.75rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        ul li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-        }
-
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tag {
-            background-color: rgba(6, 182, 212, 0.1);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 99px;
-            font-size: 0.875rem;
-            border: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: var(--surface-color);
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-        }
+        /* --- 経歴リスト --- */
+        .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+        .history-list { list-style: none; }
+        .history-list li { margin-bottom: 1rem; padding-left: 1.5rem; position: relative; }
+        .history-list li::before { content: '・'; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
+        .history-list strong { color: var(--text-main); }
+        .history-list span { display: block; font-size: 0.9rem; color: var(--text-muted); margin-top: 0.2rem; }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .subtitle { font-size: 1.2rem; }
+            .history-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Tomoki Haga</h1>
-        <p class="subtitle">DevOps / Splunk Engineer</p>
-        <div style="max-width: 600px; color: var(--text-muted);">
-            <p>大規模分散システムのアーキテクチャ設計から自動化まで、システムのライフサイクル全体を俯瞰した課題解決を提供。圧倒的な学習速度を武器に、インフラからデータ基盤、ビジネススキルまで一気通貫で価値を生み出すフルスタックエンジニア。</p>
+        <div class="header-content">
+            <h1>芳賀 智樹 / Tomoki Haga</h1>
+            <div class="subtitle">DevOps & Data Infrastructure Engineer</div>
+            <ul class="summary-list">
+                <li><strong>圧倒的な学習速度:</strong> 半年間でSplunk Architectを含む計7つのIT資格を取得。</li>
+                <li><strong>フルスタック志向:</strong> インフラ基盤、データ分析、開発（Python）を横断的に統合し最速で成果を創出。</li>
+                <li><strong>自己規律の徹底:</strong> 筋力トレーニング（上半身）、生活習慣管理による持続可能なタフネスの維持。</li>
+            </ul>
         </div>
     </header>
 
     <main class="container">
         
         <section style="margin-bottom: 4rem;">
-            <h2 class="section-title">2026 Goals</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <h3>Career & Value</h3>
-                    <ul>
-                        <li>エンジニアとしての月額単価100万円以上の実現</li>
-                        <li>圧倒的成果による「過去の自分」への勝利</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Technical & Global</h3>
-                    <ul>
-                        <li>Splunk Core Certified Consultant合格 (3月)</li>
-                        <li>TOEIC 900点到達 (12月)</li>
-                        <li>応用情報の実装・説明可能なレベルへの昇華</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section style="margin-bottom: 4rem;">
-            <h2 class="section-title">Work History</h2>
-            <div class="card">
-                <h3>株式会社SHIFT (DevOps / Splunk Engineer)</h3>
-                <p style="color: var(--text-muted); margin-bottom: 1rem;">データ分析基盤の構築、運用、および社内外向け技術コンサルティング</p>
-                <ul>
-                    <li><strong>アーキテクチャ設計・構築:</strong> Splunk Enterpriseを用いた大規模データ基盤設計、Syslogインジェストの要件定義から実装。</li>
-                    <li><strong>システム移行・標準化:</strong> PC環境の安全なデータ移行、属人性を排除したトラブルシューティング手順書の標準化。</li>
-                    <li><strong>コンサルティング:</strong> クライアントへの技術的解決策のプレゼンテーション、エスカレーション対応による迅速な課題解決。</li>
-                </ul>
-            </div>
-        </section>
-
-        <section style="margin-bottom: 4rem;">
-            <h2 class="section-title">Certifications & Skills</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <h3>資格 (半年で7資格取得)</h3>
-                    <ul>
-                        <li>Splunk Enterprise Certified Architect</li>
-                        <li>その他 Splunk公式資格 計5種</li>
-                        <li>JSTQB Certified Tester Foundation Level</li>
-                        <li>Python 3 エンジニア認定基礎試験</li>
-                    </ul>
-                    <div style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">学習中・取得予定</span>
-                        <ul style="margin-top: 0.5rem;">
-                            <li>Splunk Core Certified Consultant / LPIC-1 / データサイエンティスト検定 / 応用情報技術者</li>
-                        </ul>
+            <h2 class="section-title">🎯 2026 Goals & Progress</h2>
+            <div class="card goal-group">
+                
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div>
+                            <div class="goal-title">月額単価 100万円以上のエンジニアへ到達</div>
+                            <div class="goal-meta">期限: 2026年度中</div>
+                        </div>
+                        <div class="goal-percent">70%</div>
                     </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 70%;"></div></div>
                 </div>
-                <div class="card">
-                    <h3>専門スキル</h3>
-                    <div class="tag-container">
-                        <span class="tag">Splunk Architecture</span>
-                        <span class="tag">Data Pipeline</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">DevOps</span>
-                        <span class="tag">Infrastructure</span>
-                        <span class="tag">Test Engineering</span>
+
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div>
+                            <div class="goal-title">Splunk Core Certified Consultant 合格</div>
+                            <div class="goal-meta">期限: 3月末</div>
+                        </div>
+                        <div class="goal-percent">80%</div>
                     </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 80%;"></div></div>
                 </div>
+
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div>
+                            <div class="goal-title">TOEIC 900点到達</div>
+                            <div class="goal-meta">期限: 12月末</div>
+                        </div>
+                        <div class="goal-percent">65%</div>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 65%;"></div></div>
+                </div>
+
+                <div class="goal-item">
+                    <div class="goal-header">
+                        <div>
+                            <div class="goal-title">応用情報技術者知識の実装・説明可能化</div>
+                            <div class="goal-meta">期限: 通年</div>
+                        </div>
+                        <div class="goal-percent">40%</div>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 40%;"></div></div>
+                </div>
+
             </div>
         </section>
 
         <section>
-            <h2 class="section-title">Reading & Philosophy</h2>
-            <div class="grid-3">
+            <h2 class="section-title">📖 Background & History</h2>
+            <div class="history-grid">
+                
                 <div class="card">
-                    <h3>ビジネス・自己啓発</h3>
-                    <ul>
-                        <li>7つの習慣</li>
-                        <li>嫌われる勇気</li>
-                        <li>エッセンシャル思考</li>
-                        <li>影響力の武器</li>
+                    <h3>職歴 (Work History)</h3>
+                    <ul class="history-list">
+                        <li>
+                            <strong>株式会社SHIFT (DevOps/Splunkエンジニア)</strong>
+                            <span>Splunk Enterpriseを用いた大規模データ基盤設計と構築。</span>
+                        </li>
+                        <li>
+                            <strong>データインジェスト要件定義・実装</strong>
+                            <span>Syslog取り込み設定等を完遂し、データパイプラインを確立。</span>
+                        </li>
+                        <li>
+                            <strong>運用保守手順の標準化</strong>
+                            <span>PCへのデータ移行とトラブルシューティング手順書を作成し、属人化を排除。</span>
+                        </li>
                     </ul>
                 </div>
+
                 <div class="card">
-                    <h3>語学学習</h3>
-                    <ul>
-                        <li>どんどん話すための瞬間英作文トレーニング</li>
-                        <li>音読パッセージ</li>
+                    <h3>資格 (Certifications)</h3>
+                    <ul class="history-list">
+                        <li>
+                            <strong>Splunk公式資格 (計5種)</strong>
+                            <span>最高峰のEnterprise Certified Architectを取得済み。</span>
+                        </li>
+                        <li>
+                            <strong>JSTQB Foundation Level</strong>
+                            <span>ソフトウェアテストの国際的な品質保証の基礎を習得。</span>
+                        </li>
+                        <li>
+                            <strong>Python 3 エンジニア認定基礎試験</strong>
+                            <span>インフラ自動化に向けたプログラミング基礎力を証明。</span>
+                        </li>
                     </ul>
                 </div>
+
                 <div class="card">
-                    <h3>自己規律</h3>
-                    <ul>
-                        <li>日々の筋力トレーニング（上半身）</li>
-                        <li>ギター演奏</li>
-                        <li>徹底した生活習慣・メンタル管理</li>
+                    <h3>学習歴 (Learning History)</h3>
+                    <ul class="history-list">
+                        <li>
+                            <strong>ビジネスOSのインストール</strong>
+                            <span>『7つの習慣』『嫌われる勇気』『エッセンシャル思考』等を通じた思考法の体系化。</span>
+                        </li>
+                        <li>
+                            <strong>実践的語学学習</strong>
+                            <span>「瞬間英作文トレーニング」「音読パッセージ」を用いたアウトプット中心の訓練。</span>
+                        </li>
+                        <li>
+                            <strong>インフラ・データ領域の拡大</strong>
+                            <span>LPIC-1、データサイエンティスト検定の学習を並行推進中。</span>
+                        </li>
                     </ul>
                 </div>
+
+                <div class="card">
+                    <h3>研究歴 (Research History)</h3>
+                    <ul class="history-list">
+                        <li>
+                            <strong>[研究テーマのタイトルを記載]</strong>
+                            <span>どのような仮説を立て、どのような手法で検証したかを簡潔に記載。</span>
+                        </li>
+                        <li>
+                            <strong>[得られた成果や発表実績]</strong>
+                            <span>学会発表、論文、あるいはそこから得られた論理的思考力について記載。</span>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
     </main>
 
-    <footer>
-        <p>&copy; 2026 Tomoki Haga. All Rights Reserved.</p>
-    </footer>
-
 </body>
 </html>
+
