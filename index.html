@@ -4,57 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tomoki Haga | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* --- カラーパレット & タイポグラフィ --- */
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --surface-light: #334155;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #06b6d4;
-            --border-color: #334155;
-            --success-color: #10b981;
+            --bg-base: #0b1120; /* より深いネイビーで没入感を演出 */
+            --bg-surface: #1e293b;
+            --bg-surface-hover: #2a3a53;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-main: #06b6d4; /* シアン系で先進的なIT感を */
+            --accent-secondary: #3b82f6;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --success: #10b981;
+            
+            --font-main: 'Inter', 'Noto Sans JP', sans-serif;
+            --radius-md: 12px;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.25s;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Roboto', 'Noto Sans JP', sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
-
-        header { padding: 4rem 2rem 3rem; background: radial-gradient(circle at top center, #1e293b 0%, #0f172a 100%); border-bottom: 1px solid var(--border-color); text-align: center;}
-        h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
-        .subtitle { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1.5rem; }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
-        .section-title { font-size: 1.8rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         
-        .card { background-color: var(--surface-color); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border-color); margin-bottom: 1.5rem; }
-        .card h3 { font-size: 1.2rem; color: var(--accent-color); margin-bottom: 1rem; border-bottom: 1px solid var(--surface-light); padding-bottom: 0.5rem;}
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased; /* 文字のレンダリングを美しく */
+            overflow-x: hidden;
+        }
 
-        /* --- MVV (簡潔化) --- */
-        .mvv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 3rem;}
-        .mvv-card { background-color: var(--surface-color); border-left: 4px solid var(--accent-color); padding: 1.5rem; border-radius: 4px; }
-        .mvv-title { font-size: 1.1rem; font-weight: 700; color: var(--accent-color); margin-bottom: 0.5rem; }
-        .mvv-content { font-size: 1rem; color: var(--text-main); font-weight: 500;}
-        .mvv-sub { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+        /* --- ヘッダー --- */
+        header {
+            padding: 5rem 2rem;
+            background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0b1120 100%);
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+        }
+        
+        h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+        .subtitle { font-size: 1.25rem; color: var(--accent-main); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
 
-        /* --- 目標カード --- */
-        .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;}
-        .goal-item { margin-bottom: 1rem; }
-        .goal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.2rem; }
-        .goal-title { font-weight: 500; font-size: 0.9rem; }
-        .goal-percent { font-weight: 700; color: var(--accent-color); font-size: 0.9rem;}
-        .progress-track { width: 100%; height: 6px; background-color: var(--surface-light); border-radius: 3px; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--accent-color); border-radius: 3px; }
+        /* --- レイアウト --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+        
+        .section-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; }
+        .section-title { font-size: 1.75rem; font-weight: 700; display: flex; align-items: center; gap: 0.75rem; }
+        .section-title::after { content: ''; flex-grow: 1; height: 1px; background: linear-gradient(90deg, var(--border-light) 0%, transparent 100%); margin-left: 1rem; }
 
-        /* --- 経歴リスト --- */
-        .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.5rem; }
+        /* --- UIコンポーネント: カード --- */
+        .card {
+            background-color: var(--bg-surface);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-speed) ease;
+            height: 100%; /* グリッド内での高さを揃える */
+        }
+        .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: rgba(6, 182, 212, 0.4); }
+        .card h3 { font-size: 1.25rem; color: var(--accent-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        /* --- UIコンポーネント: MVV (Core Value) --- */
+        .mvv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 5rem; }
+        .mvv-card {
+            background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+            border-left: 4px solid var(--accent-main); padding: 1.75rem; border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .mvv-title { font-size: 0.85rem; font-weight: 700; color: var(--accent-main); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .mvv-content { font-size: 1.1rem; color: var(--text-primary); font-weight: 600; margin-bottom: 0.75rem; line-height: 1.4; }
+        .mvv-sub { font-size: 0.9rem; color: var(--text-secondary); }
+
+        /* --- UIコンポーネント: プログレスバー --- */
+        .goals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-bottom: 5rem; }
+        .goal-item { margin-bottom: 1.25rem; }
+        .goal-item:last-child { margin-bottom: 0; }
+        .goal-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.4rem; }
+        .goal-title { font-weight: 500; font-size: 0.95rem; }
+        .goal-percent { font-weight: 700; color: var(--accent-main); font-size: 0.95rem; }
+        .progress-track { width: 100%; height: 6px; background-color: rgba(255,255,255,0.05); border-radius: 99px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-main), var(--accent-secondary)); border-radius: 99px; transition: width 1s ease-in-out; }
+        .progress-fill.success { background: var(--success); }
+
+        /* --- UIコンポーネント: 履歴リスト (箇条書き) --- */
+        .history-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 1.5rem; }
         .history-list { list-style: none; }
-        .history-list li { margin-bottom: 1rem; padding-left: 1.2rem; position: relative; }
-        .history-list li::before { content: '■'; position: absolute; left: 0; top: 0.2rem; color: var(--accent-color); font-size: 0.7rem;}
-        .history-list strong { color: var(--text-main); font-size: 1rem; display: block; }
-        .history-list span { display: block; font-size: 0.9rem; color: var(--text-muted); line-height: 1.4; margin-top: 0.2rem;}
+        .history-list li {
+            margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 1.5rem;
+        }
+        .history-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .history-list li::before { content: ''; position: absolute; left: 0; top: 0.4rem; width: 6px; height: 6px; background-color: var(--accent-main); border-radius: 50%; }
+        .history-list strong { color: var(--text-primary); font-size: 1.05rem; display: block; margin-bottom: 0.25rem; font-weight: 600; }
+        .history-list span { display: block; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; }
 
-        @media (max-width: 768px) { .history-grid, .goals-grid, .mvv-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .history-grid, .goals-grid, .mvv-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .container { padding: 2rem 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -67,12 +118,14 @@
     <main class="container">
         
         <section>
-            <h2 class="section-title">🧭 Core Value</h2>
+            <div class="section-header">
+                <h2 class="section-title">🧭 Core Value</h2>
+            </div>
             <div class="mvv-grid">
                 <div class="mvv-card">
                     <div class="mvv-title">Vision (目的)</div>
                     <div class="mvv-content">自分も家族も自由に生活できる状態の実現</div>
-                    <div class="mvv-sub">・目標: 年収900万円 / 月額単価150万円</div>
+                    <div class="mvv-sub">・Target KPI: 年収900万円 / 月額単価150万円</div>
                 </div>
                 <div class="mvv-card">
                     <div class="mvv-title">Mission (手段)</div>
@@ -81,15 +134,18 @@
                 </div>
                 <div class="mvv-card">
                     <div class="mvv-title">Strategy (戦略)</div>
-                    <div class="mvv-content">圧倒的IT技術力×マネジメント獲得</div>
-                    <div class="mvv-sub">・ボトルネックとなる組織課題・後輩育成の解決</div>
+                    <div class="mvv-content">圧倒的IT技術力 × マネジメントスキルの獲得</div>
+                    <div class="mvv-sub">・組織課題（ボトルネック）の解決と後輩育成の実行</div>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2 class="section-title">🎯 2026 Goals & Progress</h2>
+            <div class="section-header">
+                <h2 class="section-title">🎯 2026 Goals & Progress</h2>
+            </div>
             <div class="goals-grid">
+                
                 <div class="card">
                     <h3>🏗️ 普遍的で堅牢なIT基礎</h3>
                     <div class="goal-item">
@@ -101,7 +157,7 @@
                         <div class="progress-track"><div class="progress-fill" style="width: 5%;"></div></div>
                     </div>
                     <div class="goal-item">
-                        <div class="goal-header"><div class="goal-title">TOEIC 900点 (最先端ITキャッチアップ・議論用)</div><div class="goal-percent">60%</div></div>
+                        <div class="goal-header"><div class="goal-title">TOEIC 900点 (最先端ITキャッチアップ用)</div><div class="goal-percent">60%</div></div>
                         <div class="progress-track"><div class="progress-fill" style="width: 60%;"></div></div>
                     </div>
                 </div>
@@ -110,11 +166,11 @@
                     <h3>👥 マネジメント＆組織育成</h3>
                     <div class="goal-item">
                         <div class="goal-header"><div class="goal-title">マネジメント理論 (ドラッカー等)</div><div class="goal-percent">20%</div></div>
-                        <div class="progress-track"><div class="progress-fill" style="width: 20%; background-color: var(--success-color);"></div></div>
+                        <div class="progress-track"><div class="progress-fill success" style="width: 20%;"></div></div>
                     </div>
                     <div class="goal-item">
                         <div class="goal-header"><div class="goal-title">PMBOK / PM系資格</div><div class="goal-percent">0%</div></div>
-                        <div class="progress-track"><div class="progress-fill" style="width: 0%; background-color: var(--success-color);"></div></div>
+                        <div class="progress-track"><div class="progress-fill success" style="width: 0%;"></div></div>
                     </div>
                 </div>
 
@@ -129,85 +185,75 @@
                         <div class="progress-track"><div class="progress-fill" style="width: 30%;"></div></div>
                     </div>
                 </div>
+
             </div>
         </section>
 
         <section>
-            <h2 class="section-title">📖 Background & Evidence</h2>
+            <div class="section-header">
+                <h2 class="section-title">📖 Background & Evidence</h2>
+            </div>
             <div class="history-grid">
                 
                 <div class="card">
-                    <h3>職歴 (Work History)</h3>
+                    <h3>🏢 職歴 (Work History)</h3>
                     <ul class="history-list">
                         <li>
                             <strong>資格取得支援企画リーダー</strong>
-                            <span>・勉強会企画、ナレッジ発信などの全体マネジメント。</span>
+                            <span>勉強会企画、ナレッジ発信などの全体マネジメントを通じた組織の技術力底上げ。</span>
                         </li>
                         <li>
                             <strong>Splunk導入エンジニア</strong>
-                            <span>・ダッシュボード作成、ロール調整、syslog取り込み実装、トラブルシューティング。<br>・「誰がどの役割を担い、何を判断すべきか」を意識した全体最適化。</span>
+                            <span>ダッシュボード作成、ロール調整、syslog取り込み実装、トラブルシューティング。「誰がどの役割を担い、何を判断すべきか」を意識したデータパイプラインの全体最適化。</span>
                         </li>
                         <li>
                             <strong>DevOpsエンジニア</strong>
-                            <span>・テスト自動化のためのスタブ資材作成補助。<br>・静的テストツールの補修。</span>
+                            <span>テスト自動化のためのスタブ資材作成補助、および静的テストツールの補修を通じた品質保証。</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>資格 (Certifications)</h3>
+                    <h3>🏆 資格 (Certifications)</h3>
+                    <ul class="history-list">
+                        <li><strong>Splunk Enterprise Certified Architect</strong><span>Splunkの分散環境を構築する能力を保証する最高峰の資格。</span></li>
+                        <li><strong>Splunk Cloud Certified Admin</strong><span>Splunk Cloud環境を管理する能力を保証する資格。</span></li>
+                        <li><strong>Splunk Enterprise Certified Admin</strong><span>Confファイルの設定や管理者の知識を保証する資格。</span></li>
+                        <li><strong>Splunk Core Certified Advanced Power User</strong><span>高度な検索やダッシュボード作成能力を保証する資格。</span></li>
+                        <li><strong>Splunk Core Certified Power User</strong><span>SPL、Knowledge Objectsなど利用者目線の知識を保証する資格。</span></li>
+                        <li><strong>JSTQB Foundation Level</strong><span>ソフトウェアテストの国際的な品質保証の基礎を習得。</span></li>
+                        <li><strong>Python 3 エンジニア認定基礎試験</strong><span>インフラ自動化に向けたプログラミング基礎力を証明。</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3>📚 読書歴 (Reading History)</h3>
                     <ul class="history-list">
                         <li>
-                            <strong>Splunk Core Certified Power User</strong>
-                            <span>SPL、Knowledge Objectsなど利用者目線の知識を保証する資格。</span>
+                            <strong>7つの習慣 (スティーブン・R・コヴィー)</strong>
+                            <span>インサイド・アウトの思考や、主体的であることなど、マネジメントと自己規律の土台となる普遍的なビジネスOSとしてインストール。</span>
                         </li>
                         <li>
-                            <strong>Splunk Core Certified Advanced Power User</strong>
-                            <span>高度な検索やダッシュボード作成能力を保証する資格。</span>
+                            <strong>エッセンシャル思考 (グレッグ・マキューン)</strong>
+                            <span>99%の無駄を捨て、1%の本質に集中するための思考法。技術習得における「選択と集中」の実践に活用。</span>
                         </li>
                         <li>
-                            <strong>Splunk Enterprise Certified Admin</strong>
-                            <span>Confの設定や管理者の知識を保証する資格。</span>
+                            <strong>嫌われる勇気 (岸見一郎, 古賀史健)</strong>
+                            <span>アドラー心理学に基づく「課題の分離」。対人関係のストレスを排除し、他者貢献を通じた全体最適化へマインドセットを移行。</span>
                         </li>
                         <li>
-                            <strong>Splunk Cloud Certified Admin</strong>
-                            <span>Splunk Cloudを管理する能力を保証する資格。</span>
+                            <strong>どんどん話すための瞬間英作文トレーニング</strong>
+                            <span>英語の回路を作成するためのアウトプット訓練。最先端IT技術の英語ディスカッションに向けた実践的教材として活用。</span>
                         </li>
                         <li>
-                            <strong>Splunk Enterprise Certified Architect</strong>
-                            <span>Splunkの分散環境を構築する能力を保証する資格。</span>
-                        </li>
-                        <li>
-                            <strong>JSTQB Foundation Level</strong>
-                            <span>ソフトウェアテストの国際的な品質保証の基礎を習得。</span>
-                        </li>
-                        <li>
-                            <strong>Python 3 エンジニア認定基礎試験</strong>
-                            <span>プログラミング基礎力を証明。</span>
+                            <strong>LPIC-1 / データサイエンティスト検定 公式テキスト</strong>
+                            <span>インフラからデータ分析領域まで、体系的な基礎力を盤石にするためのIT技術書として並行学習中。</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="card">
-                    <h3>学習歴 (Learning History)</h3>
-                    <ul class="history-list">
-                        <li>
-                            <strong>ビジネスOSのインストール</strong>
-                            <span>『7つの習慣』『嫌われる勇気』『エッセンシャル思考』等。</span>
-                        </li>
-                        <li>
-                            <strong>インフラ・データ領域の拡大</strong>
-                            <span>LPIC-1、データサイエンティスト検定の学習。</span>
-                        </li>
-                        <li>
-                            <strong>実践的語学学習（英語）</strong>
-                            <span>最先端IT講習の受講・ディスカッションを見据え、「瞬間英作文」「音読パッセージ」を使用。</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>研究歴 (Research History)</h3>
+                    <h3>🔬 研究歴 (Research History)</h3>
                     <ul class="history-list">
                         <li>
                             <strong>[研究テーマのタイトル]</strong>
@@ -226,4 +272,3 @@
     </main>
 </body>
 </html>
-
